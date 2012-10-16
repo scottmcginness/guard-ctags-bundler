@@ -55,6 +55,11 @@ module Guard
           else
             system("cat #{custom_path_for("tags")} #{custom_path_for("gems.tags")} > TAGS")
           end
+        elsif @opts[:combine]
+          system("cat #{custom_path_for("gems.tags")} >> #{custom_path_for("tags")}")
+          if @opts[:stdlib]
+            system("cat #{custom_path_for("stdlib.tags")} >> #{custom_path_for("tags")}")
+          end
         end
       end
 
